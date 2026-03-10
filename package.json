@@ -4,23 +4,29 @@
   "private": true,
   "type": "module",
   "scripts": {
+<<<<<<< HEAD
   "dev": "vite",
   "build": "vite build",
   "preview": "vite preview",
   "deploy": "npm run build && gh-pages -d dist --dotfiles"
 },
+=======
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+>>>>>>> parent of aa6ada8 (att)
   "dependencies": {
-    "lucide-vue-next": "^0.468.0",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "lucide-vue-next": "^0.468.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "autoprefixer": "^10.4.20",
-    "gh-pages": "^6.3.0",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17",
     "typescript": "~5.7.3",
     "vite": "^6.0.7",
-    "vue-tsc": "^2.2.0"
+    "vue-tsc": "^2.2.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
   }
 }
