@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { ref } from 'vue'
 import { Camera, Heart, MapPin, Utensils, Laugh } from 'lucide-vue-next'
 
 type Category = 'viagens' | 'comidas' | 'diversoes'
@@ -44,12 +45,12 @@ const categoryData: Record<Category, CategoryData> = {
     subtitle: 'O amor também passa pelo estômago',
     icon: Utensils,
     photos: [
-      { id: 1, imagem: '/fotos/comida1.jpeg', description: 'Jantar com pizza e coberta' },
-      { id: 2, imagem: '/fotos/comida2.jpeg', description: 'Adimirando a comida' },
-      { id: 3, imagem: '/fotos/comida3.jpeg', description: 'Sem pausa para a foto' },
-      { id: 4, imagem: '/fotos/comida4.jpeg', description: 'Pausa na viagem para comer' },
-      { id: 5, imagem: '/fotos/comida5.jpeg', description: 'O cappuccino não pode faltar' },
-      { id: 6, imagem: '/fotos/comida6.jpeg', description: 'Adora um almoço no shopping' },
+      { id: 7, imagem: '/fotos/comida1.jpeg', description: 'Jantar com pizza e coberta' },
+      { id: 8, imagem: '/fotos/comida2.jpeg', description: 'Adimirando a comida' },
+      { id: 9, imagem: '/fotos/comida3.jpeg', description: 'Sem pausa para a foto' },
+      { id: 10, imagem: '/fotos/comida4.jpeg', description: 'Um pratinho em outro estado' },
+      { id: 11, imagem: '/fotos/comida5.jpeg', description: 'O cappuccino não pode faltar' },
+      { id: 12, imagem: '/fotos/comida6.jpeg', description: 'Amor pelo almoço do shopping' },
     ],
     emptyMessage: 'Adicione fotos dos seus momentos gastronômicos!'
   },
@@ -58,15 +59,21 @@ const categoryData: Record<Category, CategoryData> = {
     subtitle: 'Risadas e momentos inesquecíveis',
     icon: Laugh,
     photos: [
-      { id: 1, imagem: '/fotos/diversao0.jpeg', description: '23 aninhos da minha princesa' },
-      { id: 2, imagem: '/fotos/diversao1.jpeg', description: 'Nosso primeiro show do Vintage' },
-      { id: 3, imagem: '/fotos/diversao2.jpeg', description: 'Curtindo a marejada' },
-      { id: 4, imagem: '/fotos/diversao3.jpeg', description: 'Natal juntinhos' },
-      { id: 5, imagem: '/fotos/diversao4.jpeg', description: 'Conhecemos a Green Valey' },
-      { id: 6, imagem: '/fotos/diversao5.jpeg', description: 'Minha meio biomédica' },
+      { id: 13, imagem: '/fotos/diversao0.jpeg', description: '23 aninhos da minha princesa' },
+      { id: 14, imagem: '/fotos/diversao1.jpeg', description: 'Nosso primeiro show do Vintage' },
+      { id: 15, imagem: '/fotos/diversao2.jpeg', description: 'Curtindo a marejada' },
+      { id: 16, imagem: '/fotos/diversao3.jpeg', description: 'Natal juntinhos' },
+      { id: 17, imagem: '/fotos/diversao4.jpeg', description: 'Conhecemos a Green Valey' },
+      { id: 18, imagem: '/fotos/diversao5.jpeg', description: 'Minha meio biomédica' },
     ],
     emptyMessage: 'Adicione fotos das suas diversões!'
   }
+}
+
+const heartActive = ref<Record<number, boolean>>({})
+
+function activateHeart(id: number) {
+  heartActive.value[id] = !heartActive.value[id]
 }
 
 const currentData = computed(() => categoryData[props.category])
@@ -110,7 +117,13 @@ const currentData = computed(() => categoryData[props.category])
             <div class="p-4 bg-white">
               <div class="flex items-center justify-between">
                 <p class="text-rose-700 font-medium text-sm">{{ photo.description }}</p>
-                <Heart class="w-4 h-4 text-rose-300 hover:text-rose-500 hover:fill-rose-500 cursor-pointer transition-colors" />
+                <Heart
+                  @click="activateHeart(photo.id)"
+                  class="w-4 h-4 cursor-pointer transition-colors"
+                  :class="heartActive[photo.id]
+                    ? 'text-rose-500 fill-rose-500'
+                    : 'text-rose-300 hover:text-rose-500 hover:fill-rose-500'"
+                />
               </div>
             </div>
           </div>

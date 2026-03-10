@@ -13,6 +13,7 @@ const emit = defineEmits<{
   'change-category': [category: Category]
 }>()
 
+
 const categories = [
   { 
     id: 'viagens' as Category, 
@@ -97,11 +98,25 @@ const categories = [
       </button>
     </nav>
     
-    <div class="mt-8 p-4 bg-gradient-to-br from-rose-50 to-blush rounded-2xl border border-rose-100">
+    <div v-if="activeCategory==='viagens'" class="mt-8 p-4 bg-gradient-to-br from-rose-50 to-blush rounded-2xl border border-rose-100">
       <p class="text-rose-600 text-sm text-center font-light italic">
-        "O amor não se vê com os olhos, mas com o coração."
+        "Descobrir o mundo ao seu lado transforma qualquer caminho no melhor destino."
       </p>
-      <p class="text-rose-400 text-xs text-center mt-2">— Shakespeare</p>
+      <p class="text-rose-400 text-xs text-center mt-2">— J. R. R. Tolkien</p>
+    </div>
+
+    <div v-else-if="activeCategory==='comidas'" class="mt-8 p-4 bg-gradient-to-br from-rose-50 to-blush rounded-2xl border border-rose-100">
+      <p class="text-rose-600 text-sm text-center font-light italic">
+        "A comida é simbólica do amor quando palavras são inadequadas."
+      </p>
+      <p class="text-rose-400 text-xs text-center mt-2">— Alan D. Wolfelt</p>
+    </div>
+
+    <div v-else class="mt-8 p-4 bg-gradient-to-br from-rose-50 to-blush rounded-2xl border border-rose-100">
+      <p class="text-rose-600 text-sm text-center font-light italic">
+        "Sei que o amor é real porque, ao seu lado, até os dias comuns viram festa."
+      </p>
+      <p class="text-rose-400 text-xs text-center mt-2">— Mario Quintana</p>
     </div>
   </aside>
 </template>
